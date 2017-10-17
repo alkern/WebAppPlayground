@@ -15,5 +15,6 @@ class User(models.Model):
         return dict(
             user_name=self.user_name,
             email=self.email,
-            follows=[u.user_name for u in self.follows.all()]
+            follows=[u.user_name for u in self.follows.all()],
+            id=self.id,
         )
