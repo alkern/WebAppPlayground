@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+from .models import User
+
+import json
+
+def index(request):
+    users = []
+    for user in User.objects.all():
+        users.append(user.as_json())
+    return HttpResponse(json.dumps(users))
