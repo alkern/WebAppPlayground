@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BackendClient from './backend'
+import { BackendClient, BackendMock } from './backend'
 
 class UserList extends Component {
     constructor() {
@@ -7,7 +7,7 @@ class UserList extends Component {
         this.state = {
             users: [],
         }
-        this.backend = new BackendClient()
+        this.backend = new BackendMock()
     }
 
     componentDidMount() {
@@ -15,7 +15,7 @@ class UserList extends Component {
             this.setState({
                 users: data
             })
-        })
+        }) 
     }
 
     render() {
@@ -30,7 +30,7 @@ class User extends Component {
     render() {
         let name = this.props.user.user_name
         let id = this.props.user.id
-        return name + ' has ID ' + id
+        return <div>{name + ' has ID ' + id}</div>
     }
 }
 

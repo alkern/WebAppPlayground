@@ -13,4 +13,17 @@ class BackendClient {
     }
 }
 
+export class BackendMock {
+    getUserList(cb) {
+        cb([{
+            user_name: "Test",
+            id: 15,
+        },
+        {
+            user_name: "Test2",
+            id: 16,                
+        }])
+    }
+}
+
 export default BackendClient
