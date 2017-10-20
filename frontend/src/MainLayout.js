@@ -5,7 +5,7 @@ import './MainLayout.css'
 class MainLayout extends React.Component {
     render() {
         return <span>
-            <Link to="/">
+            <Link to="/home">
                 <h1>Twitter Clone</h1>
             </Link>
             <Navigation />

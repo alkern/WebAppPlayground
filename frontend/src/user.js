@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BackendClient, BackendMock } from './backend'
+import BackendClient, { BackendMock } from './backend'
 
 class UserList extends Component {
     constructor() {
@@ -7,7 +7,7 @@ class UserList extends Component {
         this.state = {
             users: [],
         }
-        this.backend = new BackendMock()
+        this.backend = new BackendClient()
     }
 
     componentDidMount() {
