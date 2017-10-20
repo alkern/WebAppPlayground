@@ -1,8 +1,11 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework import routers
 
 from . import views
 
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<id>[0-9]+)/$', views.by_id, name='user_by_id')
+    url(r'^', include(router.urls))
 ]
