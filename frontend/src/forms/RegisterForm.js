@@ -7,16 +7,16 @@ class RegisterForm extends React.Component {
         super();
         this.backend = new Backend()
         this.state = {
-            name: "",
+            user_name: "",
             password: "",
-            mail: "",
+            email: "",
             redirect: false,
         }
     }
 
     updateName = (event) => {
         this.setState({
-            name: event.target.value,
+            user_name: event.target.value,
         })
     }
 
@@ -28,7 +28,7 @@ class RegisterForm extends React.Component {
 
     updateMail = (event) => {
         this.setState({
-            mail: event.target.value,
+            email: event.target.value,
         })
     }
 
@@ -41,7 +41,7 @@ class RegisterForm extends React.Component {
     }
 
     handleRegistration = (data) => {
-        console.log(data)
+        //TODO
     }
 
     render() {

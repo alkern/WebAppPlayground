@@ -16,7 +16,6 @@ class BackendClient {
     }
 
     register(data, cb) {
-        console.log(data)
         axios.post(this.urlUsers, data).then((response) => {
             cb(response.data)
         })
