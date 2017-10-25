@@ -3,6 +3,7 @@ import axios from 'axios'
 class BackendClient {
     constructor() {
         this.urlUsers = "http://localhost:8000/users/"
+        this.urlRegistration = "http://localhost:8000/rest-auth/registration/"
     }
 
     getUserList(cb) {
@@ -15,12 +16,12 @@ class BackendClient {
         })
     }
 
-    register(data, cb) {
-        axios.post(this.urlUsers, data).then((response) => {
-            cb(response.data)
+    register(data, successCallback, errorCallback) {
+        axios.post(this.urlRegistration, data).then((response) => {
+            successCallback(response.data)
         })
         .catch((error) => {
-            console.log(error)
+            errorCallback(error)
         })
     }
 }

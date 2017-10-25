@@ -7,8 +7,9 @@ class RegisterForm extends React.Component {
         super();
         this.backend = new Backend()
         this.state = {
-            user_name: "",
+            username: "",
             password: "",
+            isValidPassword: false,
             email: "",
             redirect: false,
         }
@@ -16,13 +17,14 @@ class RegisterForm extends React.Component {
 
     updateName = (event) => {
         this.setState({
-            user_name: event.target.value,
+            username: event.target.value,
         })
     }
 
     updatePassword = (event) => {
         this.setState({
             password: event.target.value,
+            isValidPassword: this.state.password.length >= 8,
         })
     }
 
@@ -33,15 +35,25 @@ class RegisterForm extends React.Component {
     }
 
     onSubmit = (event) => {
-        this.backend.register(this.state, this.handleRegistration)
+        let registrationData = {
+            username: this.state.username,
+            password1: this.state.password,
+            password2: this.state.password,
+            email: this.state.email,
+        }
+        this.backend.register(registrationData, this.handleRegistrationSuccess, this.handleRegistrationError)
         this.setState({
             redirect: true,
         })
         event.preventDefault(); //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
     }
 
-    handleRegistration = (data) => {
-        //TODO
+    handleRegistrationSuccess = (data) => {
+        console.log("SUCCESS")
+    }
+
+    handleRegistrationError = (data) => {
+        console.log("ERROR")
     }
 
     render() {
@@ -51,7 +63,7 @@ class RegisterForm extends React.Component {
                 <label htmlFor="register_name">User Name:</label>
                 <input type="text" className="form-control" id="register_name" onChange={this.updateName} />
             </div>
-            <div className="form-group">
+            <div className={this.state.isValidPassword ? "form-group" : "form-group has-error"}>
                 <label htmlFor="register_pass">Password:</label>
                 <input type="password" className="form-control" id="register_pass" onChange={this.updatePassword} />
             </div>
