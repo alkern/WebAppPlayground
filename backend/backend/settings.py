@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['192.168.99.100', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
+    'tweets.apps.TweetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,9 +136,4 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
-    'PAGE_SIZE': 10
-}
+ACCOUNT_EMAIL_VERIFICATION = "none"
