@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import UserList from './user'
+import TweetList from './tweets'
 
 class App extends Component {
   render() {
     return (
       <div className="container">
-        <UserList />
+        <TweetList />
       </div>
     )
   }

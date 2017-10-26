@@ -7,17 +7,14 @@ import { Route } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import MainLayout from './MainLayout'
 import RegisterForm from './forms/RegisterForm'
-
-const Login = () => {
-    return <h1>Login</h1>
-}
+import LoginForm from './forms/LoginForm'
 
 ReactDOM.render(
     <BrowserRouter>
         <div className="container">
             <Route path="/" component={MainLayout} />
             <Route path="/home" component={App} />
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
         </div>
     </BrowserRouter>, 

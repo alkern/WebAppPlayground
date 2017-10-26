@@ -2,27 +2,41 @@ import axios from 'axios'
 
 class BackendClient {
     constructor() {
-        this.urlUsers = "http://localhost:8000/users/"
-        this.urlRegistration = "http://localhost:8000/rest-auth/registration/"
+        this.urlRoot = "http://localhost:8000/"
+        this.urlTweets = this.urlRoot + "tweets/"
+        this.urlAuth = this.urlRoot + "rest-auth/"
+        this.urlRegistration = this.urlAuth + "registration/"        
+        this.urlLogin = this.urlAuth + "login/"
     }
 
-    getUserList(cb) {
-        this.get(this.urlUsers, cb)
-    }
-
-    get(url, cb) {
+    get(url, successCallback, errorCallback) {
         axios.get(url).then((response) => {
-            cb(response.data)
+            successCallback(response.data)
+        })
+        .catch((error) => {
+            errorCallback(error)
         })
     }
-
-    register(data, successCallback, errorCallback) {
+    
+    post(url, data, successCallback, errorCallback) {
         axios.post(this.urlRegistration, data).then((response) => {
             successCallback(response.data)
         })
         .catch((error) => {
             errorCallback(error)
         })
+    }
+
+    getTweets(successCallback, errorCallback) {
+        this.get(this.urlTweets, successCallback, errorCallback)
+    }
+
+    register(data, successCallback, errorCallback) {
+        this.post(this.urlRegistration, data, successCallback, errorCallback)
+    }
+
+    login(data, successCallback, errorCallback) {
+        this.post(this.urlLogin, data, successCallback, errorCallback)
     }
 }
 
