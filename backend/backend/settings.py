@@ -137,3 +137,9 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}

@@ -10,7 +10,7 @@ class TweetList extends Component {
         this.backend = new BackendClient()
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.backend.getTweets((data) => {
             this.setState({
                 tweets: data
@@ -31,10 +31,8 @@ class TweetList extends Component {
 class Tweet extends Component {
     render() {
         let name = this.props.tweet.user_name
-        let id = this.props.tweet.id
-        let title = name + ' with ID ' + id
         let text = this.props.tweet.text
-        return <div>{title}<br/>{text}</div>
+        return <div className="well well-sm">{name}<br/>{text}</div>
     }
 }
 

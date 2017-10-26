@@ -19,7 +19,7 @@ class BackendClient {
     }
     
     post(url, data, successCallback, errorCallback) {
-        axios.post(this.urlRegistration, data).then((response) => {
+        axios.post(url, data).then((response) => {
             successCallback(response.data)
         })
         .catch((error) => {
@@ -27,8 +27,16 @@ class BackendClient {
         })
     }
 
+    addToken(token) {
+        axios.defaults.headers.post['Authorization'] = "Token " + token
+    }
+
     getTweets(successCallback, errorCallback) {
         this.get(this.urlTweets, successCallback, errorCallback)
+    }
+
+    tweet(data, successCallback, errorCallback) {
+        this.post(this.urlTweets, data, successCallback, errorCallback)
     }
 
     register(data, successCallback, errorCallback) {

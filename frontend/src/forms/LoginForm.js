@@ -38,15 +38,21 @@ class LoginForm extends React.Component {
     }
     
     handleRegistrationSuccess = (data) => {
-        console.log(data.key)
+        this.backend.addToken(data.key)
+        let tweet = {
+            user_name: this.state.username,
+            text: "Logged in at " + new Date(),
+        }
+        console.log(tweet)
+        this.backend.tweet(tweet, this.handleRegistrationError, this.handleRegistrationError)
     }
 
     handleRegistrationError = (data) => {
-        console.log("ERROR")
+        console.log(data)
     }
 
     render() {
-        if (this.state.redirect) return <Redirect to="/home" />
+        if (this.state.redirect) return <Redirect push to="/home" />
         return <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <label htmlFor="register_name">User Name:</label>
