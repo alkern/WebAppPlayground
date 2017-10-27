@@ -1,8 +1,8 @@
+from rest_framework import viewsets, permissions
+from rest_framework.response import Response
+
 from .models import Tweet
 from .serializers import TweetSerializer
-from rest_framework import viewsets, permissions
-from rest_framework.decorators import list_route
-from rest_framework.response import Response
 
 class TweetViewSet(viewsets.ModelViewSet):
     queryset = Tweet.objects.all()

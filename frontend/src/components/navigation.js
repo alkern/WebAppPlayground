@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import '../MainLayout.css'
-import { connect } from "react-redux"
+import './navigation.css'
+import { connect } from 'react-redux'
 
 const Navigation = (props) => {
     if (props.isLoading) {
-        return "Loading"
+        return 'Loading'
     }
     if (props.token && props.user) {
         return <span>
