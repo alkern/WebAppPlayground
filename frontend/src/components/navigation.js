@@ -4,6 +4,9 @@ import '../MainLayout.css'
 import { connect } from "react-redux"
 
 const Navigation = (props) => {
+    if (props.isLoading) {
+        return "Loading"
+    }
     if (props.token && props.user) {
         return <span>
             Hello {props.user}
@@ -16,7 +19,8 @@ const Navigation = (props) => {
 const mapStateToProps = state => {
     return {
         token: state.authentification.token,
-        user: state.authentification.user
+        user: state.authentification.user,
+        isLoading: state.authentification.isLoading
     }
 }
 

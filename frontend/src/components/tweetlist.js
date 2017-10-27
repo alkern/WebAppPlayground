@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchTweets } from "./actions"
+import { fetchTweets } from "../actions"
 import { connect } from "react-redux"
 
 class TweetList extends Component {

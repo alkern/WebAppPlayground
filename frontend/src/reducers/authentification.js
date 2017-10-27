@@ -1,5 +1,13 @@
-export const authentification = (state = {}, action) => {
+let initialState = {
+    isLoading: false,
+}
+
+export const authentification = (state = initialState, action) => {
     switch(action.type) {
+        case "LOADING":
+            return Object.assign({}, state, {
+                isLoading: action.loading
+            })
         case "REGISTER_TOKEN":
             return Object.assign({}, state, {
                 token: action.token,
