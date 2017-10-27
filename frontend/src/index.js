@@ -13,6 +13,7 @@ import thunkMiddleware from "redux-thunk"
 import twitterReducer from "./reducers"
 import { Provider } from "react-redux"
 import LogoutPage from "./components/logout"
+import "bootstrap/dist/css/bootstrap.css"
 
 let store = createStore(twitterReducer, applyMiddleware(thunkMiddleware))
 
