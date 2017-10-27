@@ -4,7 +4,6 @@ import '../MainLayout.css'
 import { connect } from "react-redux"
 
 const Navigation = (props) => {
-    console.log(props)
     if (props.token && props.user) {
         return <span>
             Hello {props.user}

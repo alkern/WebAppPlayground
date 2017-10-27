@@ -1,11 +1,11 @@
 import React from 'react'
-import Backend from '../backend'
 import { Redirect } from 'react-router-dom'
+import { register } from "../actions"
+import { connect } from "react-redux"
 
 class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
-        this.backend = new Backend()
         this.state = {
             username: "",
             password: "",
@@ -24,7 +24,7 @@ class RegisterForm extends React.Component {
     updatePassword = (event) => {
         this.setState({
             password: event.target.value,
-            isValidPassword: this.state.password.length >= 8,
+            isValidPassword: this.state.password.length >= 7,
         })
     }
 
@@ -35,25 +35,11 @@ class RegisterForm extends React.Component {
     }
 
     onSubmit = (event) => {
-        let registrationData = {
-            username: this.state.username,
-            password1: this.state.password,
-            password2: this.state.password,
-            email: this.state.email,
-        }
-        this.backend.register(registrationData, this.handleRegistrationSuccess, this.handleRegistrationError)
+        this.props.doRegister(this.state.username, this.state.password, this.state.email)
         this.setState({
             redirect: true,
         })
         event.preventDefault(); //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
-    }
-
-    handleRegistrationSuccess = (data) => {
-        console.log("SUCCESS")
-    }
-
-    handleRegistrationError = (data) => {
-        console.log("ERROR")
     }
 
     render() {
@@ -76,4 +62,16 @@ class RegisterForm extends React.Component {
     }
 }
 
-export default RegisterForm
+const mapStateToProps = state => {
+    return {}
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        doRegister: (username, password, email) => {
+            dispatch(register(username, password, email))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)

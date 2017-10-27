@@ -16,7 +16,6 @@ class TweetList extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         tweets: state.tweets
     }

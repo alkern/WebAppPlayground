@@ -1,13 +1,11 @@
 import React from 'react'
-import BackendClient from '../backend'
 import { Redirect } from 'react-router-dom'
 import { connect } from "react-redux"
-import { registerToken } from "../actions"
+import { login } from "../actions"
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
-        this.backend = new BackendClient()
         this.state = {
             username: "",
             password: "",
@@ -28,23 +26,11 @@ class LoginForm extends React.Component {
     }
     
     onSubmit = (event) => {
-        let loginData = {
-            username: this.state.username,
-            password: this.state.password,
-        }
-        this.backend.login(loginData, this.handleRegistrationSuccess, this.handleRegistrationError)
+        this.props.login(this.state.username, this.state.password)
         this.setState({
             redirect: true,
         })
         event.preventDefault(); //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
-    }
-    
-    handleRegistrationSuccess = (data) => {
-        this.props.doRegisterToken(data.key, this.state.username)
-    }
-
-    handleRegistrationError = (data) => {
-        console.log(data)
     }
 
     render() {
@@ -69,8 +55,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        doRegisterToken: (token, user) => {
-            dispatch(registerToken(token, user))
+        login: (username, password) => {
+            dispatch(login(username, password))
         }
     }
 }
