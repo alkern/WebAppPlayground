@@ -1,11 +1,13 @@
 import React from 'react'
-import Backend from '../backend'
+import BackendClient from '../backend'
 import { Redirect } from 'react-router-dom'
+import { connect } from "react-redux"
+import { registerToken } from "../actions"
 
 class LoginForm extends React.Component {
-    constructor() {
-        super()
-        this.backend = new Backend()
+    constructor(props) {
+        super(props)
+        this.backend = new BackendClient()
         this.state = {
             username: "",
             password: "",
@@ -38,13 +40,7 @@ class LoginForm extends React.Component {
     }
     
     handleRegistrationSuccess = (data) => {
-        this.backend.addToken(data.key)
-        let tweet = {
-            user_name: this.state.username,
-            text: "Logged in at " + new Date(),
-        }
-        console.log(tweet)
-        this.backend.tweet(tweet, this.handleRegistrationError, this.handleRegistrationError)
+        this.props.doRegisterToken(data.key)
     }
 
     handleRegistrationError = (data) => {
@@ -67,4 +63,16 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+const mapStateToProps = state => {
+    return {}
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        doRegisterToken: token => {
+            dispatch(registerToken(token))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

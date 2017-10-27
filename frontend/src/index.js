@@ -8,16 +8,24 @@ import { BrowserRouter } from 'react-router-dom'
 import MainLayout from './MainLayout'
 import RegisterForm from './forms/RegisterForm'
 import LoginForm from './forms/LoginForm'
+import { createStore, applyMiddleware } from "redux"
+import thunkMiddleware from "redux-thunk"
+import twitterReducer from "./reducers"
+import { Provider } from "react-redux"
+
+let store = createStore(twitterReducer, applyMiddleware(thunkMiddleware))
 
 ReactDOM.render(
-    <BrowserRouter>
-        <div className="container">
-            <Route path="/" component={MainLayout} />
-            <Route path="/home" component={App} />
-            <Route path="/login" component={LoginForm} />
-            <Route path="/register" component={RegisterForm} />
-        </div>
-    </BrowserRouter>, 
+    <Provider store={store}>
+        <BrowserRouter>
+            <div className="container">
+                <Route path="/" component={MainLayout} />
+                <Route path="/home" component={App} />
+                <Route path="/login" component={LoginForm} />
+                <Route path="/register" component={RegisterForm} />
+            </div>
+        </BrowserRouter>
+    </Provider>, 
     document.getElementById('root')
 )
 registerServiceWorker()

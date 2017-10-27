@@ -1,30 +1,23 @@
 import React, { Component } from 'react'
-import BackendClient from './backend'
+import { fetchTweets } from "./actions"
+import { connect } from "react-redux"
 
 class TweetList extends Component {
-    constructor() {
-        super()
-        this.state = {
-            tweets: [],
-        }
-        this.backend = new BackendClient()
-    }
-
     componentWillMount() {
-        this.backend.getTweets((data) => {
-            this.setState({
-                tweets: data
-            })
-        }, (error) => {
-            console.log(error)
-        }) 
+        this.props.dispatch(fetchTweets())
     }
 
     render() {
-        let items = this.state.tweets.map((tweet, counter) => {
+        let items = this.props.tweets.map((tweet, counter) => {
             return <Tweet key={counter} tweet={tweet} />
         })
         return <div>{items}</div>
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        tweets: state.tweets
     }
 }
 
@@ -36,4 +29,4 @@ class Tweet extends Component {
     }
 }
 
-export default TweetList
+export default connect(mapStateToProps)(TweetList)

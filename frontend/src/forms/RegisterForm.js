@@ -3,8 +3,8 @@ import Backend from '../backend'
 import { Redirect } from 'react-router-dom'
 
 class RegisterForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.backend = new Backend()
         this.state = {
             username: "",
