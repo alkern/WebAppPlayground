@@ -24,8 +24,9 @@ const mapStateToProps = state => {
 class Tweet extends Component {
     render() {
         let name = this.props.tweet.user_name
+        let date = new Date(this.props.tweet.date).toLocaleString()
         let text = this.props.tweet.text
-        return <div className="well well-sm">{name}<br/>{text}</div>
+        return <div className="well well-sm">{name} {date}<br/>{text}</div>
     }
 }
 

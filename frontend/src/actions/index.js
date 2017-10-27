@@ -30,6 +30,17 @@ const receiveTweets = json => {
     }
 }
 
+export const sendTweet = (text, user, date) => {
+    return dispatch => {
+        axios.post(urlTweets, {
+            text: text,
+            user_name: user,
+            date: date
+        })
+        .then(dispatch(fetchTweets()))
+    }
+}
+
 export const register = (username, password, email) => {
     return dispatch => {
         dispatch(isLoading(true))
@@ -59,6 +70,7 @@ export const login = (username, password) => {
 }
 
 const registerToken = (token, user) => {
+    axios.defaults.headers.post['Authorization'] = "Token " + token.key
     return {
         type: "REGISTER_TOKEN",
         token: token,
@@ -71,7 +83,3 @@ export const logout = () => {
         type: "LOGOUT"
     }
 }
-
-//addToken(token) {
-//    axios.defaults.headers.post['Authorization'] = "Token " + token
-//}
