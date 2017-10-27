@@ -1,7 +1,8 @@
-export const registerToken = token => {
+export const registerToken = (token, user) => {
     return {
         type: "REGISTER_TOKEN",
-        token
+        token: token,
+        user: user
     }
 }
 
@@ -17,5 +18,11 @@ const receiveTweets = json => {
     return {
         type: "RECEIVE_TWEETS",
         tweets: json
+    }
+}
+
+export const logout = () => {
+    return {
+        type: "LOGOUT"
     }
 }

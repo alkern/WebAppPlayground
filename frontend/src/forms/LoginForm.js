@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
     }
     
     handleRegistrationSuccess = (data) => {
-        this.props.doRegisterToken(data.key)
+        this.props.doRegisterToken(data.key, this.state.username)
     }
 
     handleRegistrationError = (data) => {
@@ -69,8 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        doRegisterToken: token => {
-            dispatch(registerToken(token))
+        doRegisterToken: (token, user) => {
+            dispatch(registerToken(token, user))
         }
     }
 }

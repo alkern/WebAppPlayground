@@ -12,6 +12,7 @@ import { createStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
 import twitterReducer from "./reducers"
 import { Provider } from "react-redux"
+import LogoutPage from "./components/logout"
 
 let store = createStore(twitterReducer, applyMiddleware(thunkMiddleware))
 
@@ -22,6 +23,7 @@ ReactDOM.render(
                 <Route path="/" component={MainLayout} />
                 <Route path="/home" component={App} />
                 <Route path="/login" component={LoginForm} />
+                <Route path="/logout" component={LogoutPage} />
                 <Route path="/register" component={RegisterForm} />
             </div>
         </BrowserRouter>
