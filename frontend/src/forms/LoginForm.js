@@ -1,37 +1,41 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from "react-redux"
-import { login } from "../actions"
+import { connect } from 'react-redux'
+import { login } from '../actions'
 import showLoading from '../components/showLoading'
+import PropTypes from 'prop-types'
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: "",
-            password: "",
+            username: '',
+            password: '',
             redirect: false,
         }
+        this.updateName = this.updateName.bind(this)
+        this.updatePassword = this.updatePassword.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
     
-    updateName = (event) => {
+    updateName(event) {
         this.setState({
             username: event.target.value,
         })
     }
 
-    updatePassword = (event) => {
+    updatePassword(event) {
         this.setState({
             password: event.target.value,
         })
     }
     
-    onSubmit = (event) => {
+    onSubmit(event) {
         this.props.login(this.state.username, this.state.password)
         this.setState({
             redirect: true,
         })
-        event.preventDefault(); //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
+        event.preventDefault() //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
     }
 
     render() {
@@ -49,8 +53,11 @@ class LoginForm extends React.Component {
         </form>
     }
 }
+LoginForm.propTypes = {
+    login: PropTypes.func.isRequired
+}
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
     return {}
 }
 

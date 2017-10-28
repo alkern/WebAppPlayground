@@ -1,23 +1,26 @@
-import React from "react"
-import { connect } from "react-redux"
-import { sendTweet } from "../actions"
+import React from 'react'
+import { connect } from 'react-redux'
+import { sendTweet } from '../actions'
 import showLoading from '../components/showLoading'
+import PropTypes from 'prop-types'
 
 class TweetInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            text: ""
+            text: ''
         }
+        this.onUpdateText = this.onUpdateText.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onUpdateText = event => {
+    onUpdateText(event) {
         this.setState({
             text: event.target.value
         })
     }
 
-    onSubmit = event => {
+    onSubmit(event) {
         this.props.doSendTweet(this.state.text, this.props.user)
         event.preventDefault()
     }
@@ -32,6 +35,10 @@ class TweetInput extends React.Component {
             </form>
         </div>
     }
+}
+TweetInput.propTypes = {
+    user: PropTypes.string.isRequired,
+    doSendTweet: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

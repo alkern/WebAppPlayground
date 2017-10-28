@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TweetList from './tweetlist'
 import { connect } from 'react-redux'
 import TweetInput from './tweetInput'
+import PropTypes from 'prop-types'
 
 class App extends Component {
     render() {
@@ -14,10 +15,12 @@ class App extends Component {
         )
     }
 }
+App.propTypes = {
+    isLoggedIn: PropTypes.bool.required
+}
 
 const mapStateToProps = state => {
     return {
-        isLoading: state.authentification.isLoading,
         isLoggedIn: state.authentification.user != null
     }
 }

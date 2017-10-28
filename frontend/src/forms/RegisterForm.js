@@ -1,46 +1,51 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { register } from "../actions"
-import { connect } from "react-redux"
+import { register } from '../actions'
+import { connect } from 'react-redux'
 import showLoading from '../components/showLoading'
+import PropTypes from 'prop-types'
 
 class RegisterForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            username: "",
-            password: "",
+            username: '',
+            password: '',
             isValidPassword: false,
-            email: "",
+            email: '',
             redirect: false,
         }
+        this.updateName = this.updateName.bind(this)
+        this.updatePassword = this.updatePassword.bind(this)
+        this.updateMail = this.updateMail.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
-    updateName = (event) => {
+    updateName(event) {
         this.setState({
             username: event.target.value,
         })
     }
 
-    updatePassword = (event) => {
+    updatePassword(event) {
         this.setState({
             password: event.target.value,
             isValidPassword: this.state.password.length >= 7,
         })
     }
 
-    updateMail = (event) => {
+    updateMail(event) {
         this.setState({
             email: event.target.value,
         })
     }
 
-    onSubmit = (event) => {
+    onSubmit(event) {
         this.props.doRegister(this.state.username, this.state.password, this.state.email)
         this.setState({
             redirect: true,
         })
-        event.preventDefault(); //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
+        event.preventDefault() //https://stackoverflow.com/questions/45024214/console-error-form-submission-canceled-because-the-form-is-not-connected
     }
 
     render() {
@@ -50,7 +55,7 @@ class RegisterForm extends React.Component {
                 <label htmlFor="register_name">User Name:</label>
                 <input type="text" className="form-control" id="register_name" onChange={this.updateName} />
             </div>
-            <div className={this.state.isValidPassword ? "form-group" : "form-group has-error"}>
+            <div className={this.state.isValidPassword ? 'form-group' : 'form-group has-error'}>
                 <label htmlFor="register_pass">Password:</label>
                 <input type="password" className="form-control" id="register_pass" onChange={this.updatePassword} />
             </div>
@@ -62,8 +67,11 @@ class RegisterForm extends React.Component {
         </form>
     }
 }
+RegisterForm.propTypes = {
+    doRegister: PropTypes.func.isRequired
+}
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
     return {}
 }
 

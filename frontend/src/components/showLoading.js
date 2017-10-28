@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 /**
  * Higher-Order-Component to wrap all Components which should show a Loading screen
@@ -13,6 +14,9 @@ function showLoading(WrappedComponent) {
             if (this.props.isLoading) return 'Loading'
             return <WrappedComponent {...this.props} />
         }
+    }
+    LoadingClass.propTypes = {
+        isLoading: PropTypes.bool.isRequired
     }
 
     const mapStateToProps = state => {
