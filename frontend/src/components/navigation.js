@@ -2,11 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './navigation.css'
 import { connect } from 'react-redux'
+import showLoading from './showLoading'
 
 const Navigation = (props) => {
-    if (props.isLoading) {
-        return 'Loading'
-    }
     if (props.token && props.user) {
         return <span>
             Hello {props.user}
@@ -19,9 +17,8 @@ const Navigation = (props) => {
 const mapStateToProps = state => {
     return {
         token: state.authentification.token,
-        user: state.authentification.user,
-        isLoading: state.authentification.isLoading
+        user: state.authentification.user
     }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default showLoading(connect(mapStateToProps)(Navigation))

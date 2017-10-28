@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from "react-redux"
 import { login } from "../actions"
+import showLoading from '../components/showLoading'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -61,4 +62,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default showLoading(connect(mapStateToProps, mapDispatchToProps)(LoginForm))

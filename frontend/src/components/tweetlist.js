@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { fetchTweets } from '../actions'
 import { connect } from 'react-redux'
+import showLoading from '../components/showLoading'
 
 class TweetList extends Component {
     componentWillMount() {
@@ -30,4 +31,4 @@ class Tweet extends Component {
     }
 }
 
-export default connect(mapStateToProps)(TweetList)
+export default showLoading(connect(mapStateToProps)(TweetList))

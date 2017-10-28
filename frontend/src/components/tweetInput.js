@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { sendTweet } from "../actions"
+import showLoading from '../components/showLoading'
 
 class TweetInput extends React.Component {
     constructor(props) {
@@ -47,4 +48,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TweetInput)
+export default showLoading(connect(mapStateToProps, mapDispatchToProps)(TweetInput))
