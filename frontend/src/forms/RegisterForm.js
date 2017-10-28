@@ -2,7 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { register } from '../actions'
 import { connect } from 'react-redux'
-import showLoading from '../components/showLoading'
 import PropTypes from 'prop-types'
 
 class RegisterForm extends React.Component {
@@ -83,4 +82,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default showLoading(connect(mapStateToProps, mapDispatchToProps)(RegisterForm))
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)

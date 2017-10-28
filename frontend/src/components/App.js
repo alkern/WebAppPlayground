@@ -16,7 +16,8 @@ class App extends Component {
     }
 }
 App.propTypes = {
-    isLoggedIn: PropTypes.bool.required
+    isLoggedIn: PropTypes.bool,
+    redirect: PropTypes.string
 }
 
 const mapStateToProps = state => {

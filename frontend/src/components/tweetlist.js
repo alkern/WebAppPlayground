@@ -6,7 +6,8 @@ import PropTypes from 'prop-types'
 
 class TweetList extends Component {
     componentWillMount() {
-        this.props.dispatch(fetchTweets())
+        if (!this.props.tweets || !this.props.tweets.length)
+            this.props.dispatch(fetchTweets())
     }
 
     render() {

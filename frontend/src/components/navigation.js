@@ -15,8 +15,8 @@ const Navigation = (props) => {
     return [<NavLink key="1" to="/login">Login</NavLink>, <NavLink key="2" to="/register">Register</NavLink>]
 }
 Navigation.propTypes = {
-    token: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired
+    token: PropTypes.string,
+    user: PropTypes.string
 }
 
 const mapStateToProps = state => {

@@ -1,5 +1,8 @@
 let initialState = {
     isLoading: false,
+    token: null,
+    user: null,
+    redirectTo: null
 }
 
 export const authentification = (state = initialState, action) => {
@@ -17,6 +20,10 @@ export const authentification = (state = initialState, action) => {
         return Object.assign({}, state, {
             token: null,
             user: null
+        })
+    case 'REDIRECT':
+        return Object.assign({}, state, {
+            redirectTo: action.to
         })
     default:
         return state

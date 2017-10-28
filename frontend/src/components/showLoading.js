@@ -21,7 +21,7 @@ function showLoading(WrappedComponent) {
 
     const mapStateToProps = state => {
         return {
-            isLoading: state.tweets.isLoading
+            isLoading: state.authentification.isLoading
         }
     }
 

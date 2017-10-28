@@ -19,7 +19,8 @@ export const fetchTweets = () => {
         return axios.get(urlTweets)
             .then(response => response.data)
             .then(json => dispatch(receiveTweets(json)))
-            .then(dispatch(isLoading(false)))
+            .then(() => dispatch(isLoading(false)))
+            .catch(() => dispatch(isLoading(false)))
     }
 }
 
@@ -32,12 +33,12 @@ const receiveTweets = json => {
 
 export const sendTweet = (text, user, date) => {
     return dispatch => {
-        axios.post(urlTweets, {
+        return axios.post(urlTweets, {
             text: text,
             user_name: user,
             date: date
         })
-            .then(dispatch(fetchTweets()))
+            .then(() => dispatch(fetchTweets()))
     }
 }
 
@@ -52,7 +53,8 @@ export const register = (username, password, email) => {
         })
             .then(response => response.data)
             .then(token => dispatch(registerToken(token, username)))
-            .then(dispatch(isLoading(false)))
+            .then(() => dispatch(isLoading(false))) 
+            .catch(() => dispatch(isLoading(false)))
     }
 }
 
@@ -65,7 +67,8 @@ export const login = (username, password) => {
         })
             .then(response => response.data)
             .then(token => dispatch(registerToken(token, username)))
-            .then(dispatch(isLoading(false)))
+            .then(() => dispatch(isLoading(false)))
+            .catch(() => dispatch(isLoading(false)))
     }
 }
 
@@ -73,7 +76,7 @@ const registerToken = (token, user) => {
     axios.defaults.headers.post['Authorization'] = 'Token ' + token.key
     return {
         type: 'REGISTER_TOKEN',
-        token: token,
+        token: token.key,
         user: user
     }
 }
@@ -81,5 +84,12 @@ const registerToken = (token, user) => {
 export const logout = () => {
     return {
         type: 'LOGOUT'
+    }
+}
+
+export const redirect = location => {
+    return {
+        type: 'REDIRECT',
+        to: location
     }
 }
