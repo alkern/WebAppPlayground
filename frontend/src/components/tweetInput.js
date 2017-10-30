@@ -21,7 +21,7 @@ class TweetInput extends React.Component {
     }
 
     onSubmit(event) {
-        this.props.doSendTweet(this.state.text, this.props.user)
+        this.props.doSendTweet(this.state.text, this.props.user.pk)
         event.preventDefault()
     }
 
@@ -37,7 +37,13 @@ class TweetInput extends React.Component {
     }
 }
 TweetInput.propTypes = {
-    user: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        email: PropTypes.string,
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        pk: PropTypes.number
+    }),
     doSendTweet: PropTypes.func.isRequired
 }
 

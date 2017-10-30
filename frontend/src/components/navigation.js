@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const Navigation = (props) => {
     if (props.token && props.user) {
         return <span>
-            Hello {props.user}
+            Hello {props.user.username}
             <NavLink to="/logout">Logout</NavLink>
         </span>
     }
@@ -16,7 +16,13 @@ const Navigation = (props) => {
 }
 Navigation.propTypes = {
     token: PropTypes.string,
-    user: PropTypes.string
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        email: PropTypes.string,
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        pk: PropTypes.number
+    })
 }
 
 const mapStateToProps = state => {

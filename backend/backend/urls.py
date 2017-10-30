@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^admin/', admin.site.urls),
     #url(r'^users', include('users.urls')),
-    url(r'tweet', include('tweets.urls')),
+    url(r'v1', include('tweets.urls')),
 ]
