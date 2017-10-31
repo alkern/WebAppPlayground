@@ -63,7 +63,10 @@ export const register = (username, password, email) => {
             email: email
         })
             .then(response => response.data.key)
-            .then(token => dispatch(registerToken(token, username)))
+            .then(token => {
+                dispatch(registerToken(token))
+                dispatch(getAuthUser(token, username))
+            })
             .then(() => dispatch(isLoading(false))) 
             .catch(() => dispatch(isLoading(false)))
     }
