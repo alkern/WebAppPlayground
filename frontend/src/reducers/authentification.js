@@ -12,8 +12,7 @@ export const authentification = (state = initialState, action) => {
         })
     case 'REGISTER_TOKEN':
         return Object.assign({}, state, {
-            token: action.token,
-            user: action.user
+            token: action.token
         })
     case 'LOGOUT':
         return Object.assign({}, state, {

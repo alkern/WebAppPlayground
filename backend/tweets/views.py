@@ -23,7 +23,8 @@ class RichTweetViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def list(self, request):
-        recent_tweets = Tweet.objects.all().order_by("-date")
+        user = request.query_params['pk']
+        recent_tweets = Tweet.objects.all().filter(user=user).order_by("-date")
 
         page = self.paginate_queryset(recent_tweets)
         if page is not None:

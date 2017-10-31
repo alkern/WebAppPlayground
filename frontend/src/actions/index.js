@@ -16,10 +16,11 @@ const isLoading = isLoading => {
     }
 }
 
-export const fetchTweets = () => {
+export const fetchTweets = userPk => {
     return dispatch => {
+        if (!userPk) return
         dispatch(isLoading(true))
-        return axios.get(urlRichTweets)
+        return axios.get(urlRichTweets + '?pk=' + userPk)
             .then(response => response.data)
             .then(json => dispatch(receiveTweets(json)))
             .then(() => dispatch(isLoading(false)))

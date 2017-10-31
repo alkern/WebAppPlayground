@@ -7,12 +7,12 @@ import PropTypes from 'prop-types'
 class TweetList extends Component {
     componentWillMount() {
         if (this.props.shouldFetch)
-            this.props.dispatch(fetchTweets())
+            this.props.dispatch(fetchTweets(this.props.userPk))
     }
 
     componentDidUpdate() {
         if (this.props.shouldFetch)
-            this.props.dispatch(fetchTweets())
+            this.props.dispatch(fetchTweets(this.props.userPk))
     }
 
     render() {
@@ -25,13 +25,15 @@ class TweetList extends Component {
 TweetList.propTypes = {
     dispatch: PropTypes.func.isRequired,
     tweets: PropTypes.array.isRequired,
-    shouldFetch: PropTypes.bool.isRequired
+    shouldFetch: PropTypes.bool.isRequired,
+    userPk: PropTypes.number
 }
 
 const mapStateToProps = state => {
     return {
         tweets: state.tweets.tweets,
-        shouldFetch: state.tweets.shouldFetch
+        shouldFetch: state.tweets.shouldFetch,
+        userPk: state.authentification.user ? state.authentification.user.pk : 0
     }
 }
 
