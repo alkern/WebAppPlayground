@@ -5,6 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'tweet', views.TweetViewSet)
+router.register(r'rtweet', views.RichTweetViewSet)
 router.register(r'user', views.TwitterUserViewSet)
 
 urlpatterns = [

@@ -21,7 +21,7 @@ class TweetInput extends React.Component {
     }
 
     onSubmit(event) {
-        this.props.doSendTweet(this.state.text, this.props.user.pk)
+        this.props.doSendTweet(this.state.text, this.props.user.pk, this.props.user.username)
         event.preventDefault()
     }
 
@@ -55,8 +55,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        doSendTweet: (text, user) => {
-            dispatch(sendTweet(text, user, new Date(Date.now()).toISOString()))
+        doSendTweet: (text, user, username) => {
+            dispatch(sendTweet(text, user, username, new Date(Date.now()).toISOString()))
         }
     }
 }

@@ -3,7 +3,7 @@ import axios from 'axios'
 let urlRoot = 'http://localhost:8000/'
 let urlApi = urlRoot + 'v1/'
 let urlTweets = urlApi + 'tweet/'
-let urlUser = urlApi + 'user/'
+let urlRichTweets = urlApi + 'rtweet/'
 let urlAuth = urlRoot + 'rest-auth/'
 let urlAuthUser = urlAuth + 'user/'
 let urlRegistration = urlAuth + 'registration/'        
@@ -19,7 +19,7 @@ const isLoading = isLoading => {
 export const fetchTweets = () => {
     return dispatch => {
         dispatch(isLoading(true))
-        return axios.get(urlTweets)
+        return axios.get(urlRichTweets)
             .then(response => response.data)
             .then(json => dispatch(receiveTweets(json)))
             .then(() => dispatch(isLoading(false)))
@@ -34,14 +34,21 @@ const receiveTweets = json => {
     }
 }
 
-export const sendTweet = (text, user, date) => {
+export const sendTweet = (text, user, username, date) => {
     return dispatch => {
         return axios.post(urlTweets, {
             text: text,
             user: user,
+            user_name: username,
             date: date
         })
-            .then(() => dispatch(fetchTweets()))
+            .then(() => dispatch(shouldFetch()))
+    }
+}
+
+const shouldFetch = () => {
+    return {
+        type: 'SHOULD_FETCH'
     }
 }
 

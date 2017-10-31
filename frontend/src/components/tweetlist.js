@@ -6,7 +6,12 @@ import PropTypes from 'prop-types'
 
 class TweetList extends Component {
     componentWillMount() {
-        if (!this.props.tweets)
+        if (this.props.shouldFetch)
+            this.props.dispatch(fetchTweets())
+    }
+
+    componentDidUpdate() {
+        if (this.props.shouldFetch)
             this.props.dispatch(fetchTweets())
     }
 
@@ -19,12 +24,14 @@ class TweetList extends Component {
 }
 TweetList.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    tweets: PropTypes.array.isRequired
+    tweets: PropTypes.array.isRequired,
+    shouldFetch: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {
     return {
-        tweets: state.tweets
+        tweets: state.tweets.tweets,
+        shouldFetch: state.tweets.shouldFetch
     }
 }
 

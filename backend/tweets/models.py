@@ -10,9 +10,9 @@ class TwitterUser(models.Model):
         return self.auth_user.__str__()
 
 class Tweet(models.Model):
-    user = models.OneToOneField(TwitterUser)
+    user = models.ForeignKey(User)
     text = models.CharField(max_length=140)
     date = models.DateTimeField(default=datetime.date.today)
 
     def __str__(self):
-        return self.user.to_fields.user_name + " " + self.text
+        return self.user.__str__() + " " + self.text

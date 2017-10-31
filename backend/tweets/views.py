@@ -2,11 +2,24 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 
 from .models import Tweet, TwitterUser
-from .serializers import TweetSerializer, TwitterUserSerializer
+from .serializers import TweetSerializer, RichTweetSerializer, TwitterUserSerializer
 
 class TweetViewSet(viewsets.ModelViewSet):
+    '''
+    Viewset for all Tweets in their model form
+    Used to POST new tweets
+    '''
     queryset = Tweet.objects.all()
     serializer_class = TweetSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+class RichTweetViewSet(viewsets.ModelViewSet):
+    '''
+    Viewset for Tweets which are extended with user information
+    Used to GET sorted tweets
+    '''
+    queryset = Tweet.objects.all()
+    serializer_class = RichTweetSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def list(self, request):
