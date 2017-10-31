@@ -7,14 +7,14 @@ import PropTypes from 'prop-types'
 
 const Navigation = (props) => {
     if (props.token && props.user) {
-        return <ul className="nav nav-tabs">
-            <li role="presentation"><NavLink to="/profile">Hello {props.user.username}</NavLink></li>
-            <li role="presentation"><NavLink to="/logout">Logout</NavLink></li>
+        return <ul className='nav nav-tabs'>
+            <li role='presentation'><NavLink to='/profile'>Hello {props.user.username}</NavLink></li>
+            <li role='presentation'><NavLink to='/logout'>Logout</NavLink></li>
         </ul>
     }
-    return <ul className="nav nav-tabs">
-        <li role="presentation"><NavLink key="1" to="/login">Login</NavLink></li>
-        <li role="presentation"><NavLink key="2" to="/register">Register</NavLink></li>
+    return <ul className='nav nav-tabs'>
+        <li role='presentation'><NavLink key='1' to='/login'>Login</NavLink></li>
+        <li role='presentation'><NavLink key='2' to='/register'>Register</NavLink></li>
     </ul>
 }
 Navigation.propTypes = {

@@ -5,7 +5,7 @@ import Navigation from './navigation'
 class MainLayout extends React.Component {
     render() {
         return <span>
-            <NavLink to="/home">
+            <NavLink to='/home'>
                 <h1>Twitter Clone</h1>
             </NavLink>
             <Navigation />

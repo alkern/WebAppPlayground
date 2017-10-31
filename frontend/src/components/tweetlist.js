@@ -42,7 +42,7 @@ class Tweet extends Component {
         let name = this.props.tweet.user_name
         let date = new Date(this.props.tweet.date).toLocaleString()
         let text = this.props.tweet.text
-        return <div className="well well-sm">{name} {date}<br/>{text}</div>
+        return <div className='well well-sm'>{name} {date}<br/>{text}</div>
     }
 }
 Tweet.propTypes = {

@@ -10,7 +10,7 @@ class Logout extends React.Component {
     }
 
     render() {
-        return <Redirect push to="/home" />
+        return <Redirect push to='/home' />
     }
 }
 Logout.propTypes = {

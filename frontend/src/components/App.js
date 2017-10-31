@@ -8,7 +8,7 @@ class App extends Component {
     render() {
         if (this.props.isLoggedIn) var input = <TweetInput /> 
         return (
-            <div className="container">
+            <div className='container'>
                 {input}
                 <TweetList />
             </div>

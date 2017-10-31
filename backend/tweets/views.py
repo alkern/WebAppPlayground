@@ -24,7 +24,7 @@ class RichTweetViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         user = request.query_params['pk']
-        recent_tweets = Tweet.objects.all().filter(user=user).order_by("-date")
+        recent_tweets = Tweet.objects.all().filter(user=user).order_by('-date')
 
         page = self.paginate_queryset(recent_tweets)
         if page is not None:

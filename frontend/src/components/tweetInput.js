@@ -26,12 +26,12 @@ class TweetInput extends React.Component {
     }
 
     render() {
-        return <div className="jumbotron">
+        return <div className='jumbotron'>
             <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <textarea className="form-control" onChange={this.onUpdateText} />
+                <div className='form-group'>
+                    <textarea className='form-control' onChange={this.onUpdateText} />
                 </div>
-                <button type="submit" className="btn btn-default">Submit</button>
+                <button type='submit' className='btn btn-default'>Submit</button>
             </form>
         </div>
     }

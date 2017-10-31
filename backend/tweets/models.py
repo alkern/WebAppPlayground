@@ -15,4 +15,4 @@ class Tweet(models.Model):
     date = models.DateTimeField(default=datetime.date.today)
 
     def __str__(self):
-        return self.user.__str__() + " " + self.text
+        return self.user.__str__() + ' ' + self.text

@@ -19,12 +19,12 @@ let store = createStore(twitterReducer, applyMiddleware(thunkMiddleware))
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <div className="container">
-                <Route path="/" component={MainLayout} />
-                <Route path="/home" component={App} />
-                <Route path="/login" component={LoginForm} />
-                <Route path="/logout" component={LogoutPage} />
-                <Route path="/register" component={RegisterForm} />
+            <div className='container'>
+                <Route path='/' component={MainLayout} />
+                <Route path='/home' component={App} />
+                <Route path='/login' component={LoginForm} />
+                <Route path='/logout' component={LogoutPage} />
+                <Route path='/register' component={RegisterForm} />
             </div>
         </BrowserRouter>
     </Provider>,
