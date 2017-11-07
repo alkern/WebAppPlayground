@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-let urlRoot = 'http://localhost:8000/'
+//let urlRoot = 'http://localhost:8000/'
+let urlRoot = ''
 let urlApi = urlRoot + 'v1/'
 let urlTweets = urlApi + 'tweet/'
 let urlRichTweets = urlApi + 'rtweet/'
