@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 
-from .models import Tweet, TwitterUser
-from .serializers import TweetSerializer, RichTweetSerializer, TwitterUserSerializer
+from .models import Tweet
+from .serializers import TweetSerializer, RichTweetSerializer
 
 class TweetViewSet(viewsets.ModelViewSet):
     '''
@@ -33,8 +33,3 @@ class RichTweetViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(recent_tweets, many=True)
         return Response(serializer.data)
-
-class TwitterUserViewSet(viewsets.ModelViewSet):
-    queryset = TwitterUser.objects.all()
-    serializer_class = TwitterUserSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

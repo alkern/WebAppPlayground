@@ -125,10 +125,3 @@ export const logout = () => {
         type: 'LOGOUT'
     }
 }
-
-export const redirect = location => {
-    return {
-        type: 'REDIRECT',
-        to: location
-    }
-}
