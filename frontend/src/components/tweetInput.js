@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { sendTweet } from '../actions'
-import showLoading from '../components/showLoading'
+import { showLoading } from '.'
 import PropTypes from 'prop-types'
 
 class TweetInput extends React.Component {

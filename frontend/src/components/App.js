@@ -1,19 +1,17 @@
-import React, { Component } from 'react'
-import TweetList from './tweetlist'
+import React from 'react'
+import { TweetListContainer } from '../containers'
 import { connect } from 'react-redux'
 import TweetInput from './tweetInput'
 import PropTypes from 'prop-types'
 
-class App extends Component {
-    render() {
-        if (this.props.isLoggedIn) var input = <TweetInput /> 
-        return (
-            <div className='container'>
-                {input}
-                <TweetList />
-            </div>
-        )
-    }
+const App = props => {
+    if (props.isLoggedIn) var input = <TweetInput /> 
+    return (
+        <div className='container'>
+            {input}
+            <TweetListContainer />
+        </div>
+    )
 }
 App.propTypes = {
     isLoggedIn: PropTypes.bool,

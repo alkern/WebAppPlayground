@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './navigation.css'
 import { connect } from 'react-redux'
-import showLoading from './showLoading'
+import { showLoading } from '.'
 import PropTypes from 'prop-types'
 
 const Navigation = (props) => {
