@@ -8,14 +8,18 @@ import MainLayout from './components/MainLayout'
 import RegisterForm from './forms/RegisterForm'
 import LoginForm from './forms/LoginForm'
 import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware  from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import twitterReducer from './reducers'
 import { Provider } from 'react-redux'
-import LogoutPage from './components/logout'
-import Profile from './components/profile'
+import LogoutPage from './components/Logout'
+import Profile from './components/Profile'
 import 'bootstrap/dist/css/bootstrap.css'
+import sagas from './sagas'
 
-let store = createStore(twitterReducer, applyMiddleware(thunkMiddleware))
+let sagaMiddleware = createSagaMiddleware()
+let store = createStore(twitterReducer, applyMiddleware(sagaMiddleware, thunkMiddleware))
+sagaMiddleware.run(sagas)
 
 ReactDOM.render(
     <Provider store={store}>

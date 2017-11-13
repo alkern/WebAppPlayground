@@ -10,7 +10,7 @@ let urlAuthUser = urlAuth + 'user/'
 let urlRegistration = urlAuth + 'registration/'        
 let urlLogin = urlAuth + 'login/'
 
-const isLoading = isLoading => {
+export const isLoading = isLoading => {
     return {
         type: 'LOADING',
         loading: isLoading
@@ -18,18 +18,13 @@ const isLoading = isLoading => {
 }
 
 export const fetchTweets = userPk => {
-    return dispatch => {
-        if (!userPk) return
-        dispatch(isLoading(true))
-        return axios.get(urlRichTweets + '?pk=' + userPk)
-            .then(response => response.data)
-            .then(json => dispatch(receiveTweets(json)))
-            .then(() => dispatch(isLoading(false)))
-            .catch(() => dispatch(isLoading(false)))
+    return {
+        type: 'FETCH_TWEETS',
+        pk: userPk
     }
 }
 
-const receiveTweets = json => {
+export const receiveTweets = json => {
     return {
         type: 'RECEIVE_TWEETS',
         tweets: json
@@ -85,6 +80,7 @@ export const login = (username, password) => {
                 dispatch(registerToken(token))
                 dispatch(getAuthUser(token, username))
             })
+            .then(() => dispatch(shouldFetch()))
             .then(() => dispatch(isLoading(false)))
             .catch(() => dispatch(isLoading(false)))
     }
