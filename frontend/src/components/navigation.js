@@ -6,7 +6,7 @@ import { showLoading } from '.'
 import PropTypes from 'prop-types'
 
 const Navigation = (props) => {
-    if (props.token && props.user) {
+    if (props.user) {
         return <ul className='nav nav-tabs'>
             <li role='presentation'><NavLink to='/profile'>Hello {props.user.username}</NavLink></li>
             <li role='presentation'><NavLink to='/logout'>Logout</NavLink></li>
@@ -18,7 +18,6 @@ const Navigation = (props) => {
     </ul>
 }
 Navigation.propTypes = {
-    token: PropTypes.string,
     user: PropTypes.shape({
         username: PropTypes.string,
         email: PropTypes.string,
@@ -30,7 +29,6 @@ Navigation.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        token: state.authentification.token,
         user: state.authentification.user
     }
 }

@@ -1,15 +1,3 @@
-import axios from 'axios'
-
-//let urlRoot = 'http://localhost:8000/'
-let urlRoot = ''
-let urlApi = urlRoot + 'v1/'
-let urlTweets = urlApi + 'tweet/'
-let urlRichTweets = urlApi + 'rtweet/'
-let urlAuth = urlRoot + 'rest-auth/'
-let urlAuthUser = urlAuth + 'user/'
-let urlRegistration = urlAuth + 'registration/'        
-let urlLogin = urlAuth + 'login/'
-
 export const isLoading = isLoading => {
     return {
         type: 'LOADING',
@@ -32,83 +20,39 @@ export const receiveTweets = json => {
 }
 
 export const sendTweet = (text, user, username, date) => {
-    return dispatch => {
-        return axios.post(urlTweets, {
-            text: text,
-            user: user,
-            user_name: username,
-            date: date
-        })
-            .then(() => dispatch(shouldFetch()))
+    return {
+        type: 'SEND_TWEET',
+        text: text,
+        user: user,
+        username: username,
+        date: date
     }
 }
 
-const shouldFetch = () => {
+export const shouldFetch = () => {
     return {
         type: 'SHOULD_FETCH'
     }
 }
 
 export const register = (username, password, email) => {
-    return dispatch => {
-        dispatch(isLoading(true))
-        axios.post(urlRegistration, {
-            username: username,
-            password1: password,
-            password2: password,
-            email: email
-        })
-            .then(response => response.data.key)
-            .then(token => {
-                dispatch(registerToken(token))
-                dispatch(getAuthUser(token, username))
-            })
-            .then(() => dispatch(isLoading(false))) 
-            .catch(() => dispatch(isLoading(false)))
+    return {
+        type: 'REGISTER',
+        username: username,
+        password: password,
+        email: email
     }
 }
 
 export const login = (username, password) => {
-    return dispatch => {
-        dispatch(isLoading(true))
-        return axios.post(urlLogin, {
-            username: username, 
-            password: password
-        })
-            .then(response => response.data.key)
-            .then(token => {
-                dispatch(registerToken(token))
-                dispatch(getAuthUser(token, username))
-            })
-            .then(() => dispatch(shouldFetch()))
-            .then(() => dispatch(isLoading(false)))
-            .catch(() => dispatch(isLoading(false)))
-    }
-}
-
-const registerToken = token => {
-    axios.defaults.headers.post['Authorization'] = 'Token ' + token
     return {
-        type: 'REGISTER_TOKEN',
-        token: token
+        type: 'LOGIN',
+        username: username,
+        password: password
     }
 }
 
-//Getting user from the server at .../rest-auth/user/ with username in data
-const getAuthUser = (token, user) => {
-    return dispatch => {
-        axios.get(urlAuthUser, {
-            headers: {
-                authorization: 'Token ' + token,
-            },
-            user_name: user
-        })
-            .then(response => response.data)  
-            .then(user => dispatch(storeUser(user)))  
-    }
-}
-
-const storeUser = user => {
+export const storeUser = user => {
     return {
         type: 'STORE_USER',
         user: user
@@ -116,7 +60,6 @@ const storeUser = user => {
 }
 
 export const logout = () => {
-    axios.defaults.headers.post['Authorization'] = ''
     return {
         type: 'LOGOUT'
     }

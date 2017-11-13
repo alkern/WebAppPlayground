@@ -8,7 +8,6 @@ import MainLayout from './components/MainLayout'
 import RegisterForm from './forms/RegisterForm'
 import LoginForm from './forms/LoginForm'
 import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware  from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import twitterReducer from './reducers'
 import { Provider } from 'react-redux'
@@ -18,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import sagas from './sagas'
 
 let sagaMiddleware = createSagaMiddleware()
-let store = createStore(twitterReducer, applyMiddleware(sagaMiddleware, thunkMiddleware))
+let store = createStore(twitterReducer, applyMiddleware(sagaMiddleware))
 sagaMiddleware.run(sagas)
 
 ReactDOM.render(
