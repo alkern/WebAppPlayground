@@ -1,14 +1,18 @@
 import { takeEvery, put, call } from 'redux-saga/effects'
 import Api from '../api'
-import { shouldFetch, receiveTweets, isLoading, storeUser } from '../actions'
+import { shouldFetch, receiveTweets, isLoading, storeUser, reportError } from '../actions'
 
 let api = new Api()
 
 function* fetchTweets(action) {
-    yield put(isLoading(true))
-    const tweets = yield call(api.getTweets, action.pk)
-    yield put(isLoading(false))
-    yield put(receiveTweets(tweets))
+    try {
+        yield put(isLoading(true))
+        const tweets = yield call(api.getTweets, action.pk)
+        yield put(isLoading(false))
+        yield put(receiveTweets(tweets))
+    } catch(error) {
+        yield put(isLoading(false))
+    }
 }
 
 function* sendTweet(action) {
@@ -16,23 +20,32 @@ function* sendTweet(action) {
     yield put(shouldFetch())
 }
 
-function* register(action) {    
-    yield put(isLoading(true))
-    const token = yield call(api.register, action.username, action.password, action.email)
-    api.setToken(token)
-    const user = yield call(api.getAuthUser, action.username)
-    yield put(storeUser(user))
-    yield put(isLoading(false))
+function* register(action) {      
+    try {  
+        yield put(isLoading(true))
+        const token = yield call(api.register, action.username, action.password, action.email)
+        api.setToken(token)
+        const user = yield call(api.getAuthUser, action.username)
+        yield put(storeUser(user))
+        yield put(isLoading(false))
+    } catch(error) {
+        yield put(isLoading(false))
+    }
 }
 
 function* login(action) {    
-    yield put(isLoading(true))
-    const token = yield call(api.login, action.username, action.password)
-    api.setToken(token)
-    const user = yield call(api.getAuthUser, action.username)
-    yield put(storeUser(user))    
-    yield put(shouldFetch())
-    yield put(isLoading(false))
+    try {
+        yield put(isLoading(true))
+        const token = yield call(api.login, action.username, action.password)
+        api.setToken(token)
+        const user = yield call(api.getAuthUser, action.username)
+        yield put(storeUser(user))    
+        yield put(shouldFetch())
+        yield put(isLoading(false))
+    } catch(error) {
+        yield put(reportError(error))
+        yield put(isLoading(false))
+    }
 }
 
 function* logout() {

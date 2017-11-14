@@ -1,6 +1,4 @@
 import axios from 'axios'
-import { put } from 'redux-saga/effects'
-import { isLoading } from '../actions'
 
 let urlRoot = ''
 let urlApi = urlRoot + 'v1/'
@@ -24,7 +22,6 @@ class Api {
     getTweets(userPk) {
         return axios.get(urlRichTweets + '?pk=' + userPk)
             .then(response => response.data)
-            .catch(() => put(isLoading(false)))
     }
 
     sendTweet(text, user, username, date) {
@@ -44,7 +41,6 @@ class Api {
             email: email
         })
             .then(response => response.data.key)
-            .catch(() => put(isLoading(false)))
     }
 
     getAuthUser(username) {
@@ -60,7 +56,6 @@ class Api {
             password: password
         })
             .then(response => response.data.key)
-            .catch(() => put(isLoading(false)))
     }
 
     logout() {

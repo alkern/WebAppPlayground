@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { logout } from '../actions'
 import PropTypes from 'prop-types'
 
-class Logout extends React.Component {
+class RedirectWithAction extends React.Component {
     componentWillMount() {
-        this.props.dispatch(logout())        
+        this.props.dispatch(this.props.action)        
     }
 
     render() {
         return <Redirect push to='/home' />
     }
 }
-Logout.propTypes = {
+RedirectWithAction.propTypes = {
+    action: PropTypes.object,
     dispatch: PropTypes.func.isRequired
 }
 
-export default connect()(Logout)
+export default connect()(RedirectWithAction)

@@ -17,6 +17,10 @@ export const authentification = (state = initialState, action) => {
         return Object.assign({}, state, {
             user: action.user
         })
+    case 'ERROR':
+        return Object.assign({}, state, {
+            error: action.error
+        })
     default:
         return state
     }

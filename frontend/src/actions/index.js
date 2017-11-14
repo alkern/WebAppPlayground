@@ -64,3 +64,10 @@ export const logout = () => {
         type: 'LOGOUT'
     }
 }
+
+export const reportError = error => {
+    return {
+        type: 'ERROR',
+        error: error ? error.message : null
+    }
+}
