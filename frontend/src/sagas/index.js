@@ -20,7 +20,7 @@ function* register(action) {
     yield put(isLoading(true))
     const token = yield call(api.register, action.username, action.password, action.email)
     api.setToken(token)
-    const user = yield call(api.getAuthUser, token, action.username)
+    const user = yield call(api.getAuthUser, action.username)
     yield put(storeUser(user))
     yield put(isLoading(false))
 }
@@ -29,7 +29,7 @@ function* login(action) {
     yield put(isLoading(true))
     const token = yield call(api.login, action.username, action.password)
     api.setToken(token)
-    const user = yield call(api.getAuthUser, token, action.username)
+    const user = yield call(api.getAuthUser, action.username)
     yield put(storeUser(user))    
     yield put(shouldFetch())
     yield put(isLoading(false))

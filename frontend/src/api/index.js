@@ -14,11 +14,11 @@ let urlLogout = urlAuth + 'logout/'
 
 class Api {
     setToken(token) {
-        axios.defaults.headers.post['Authorization'] = 'Token ' + token
+        axios.defaults.headers.common['Authorization'] = 'Token ' + token
     }
 
     resetToken() {
-        axios.defaults.headers.post['Authorization'] = ''
+        axios.defaults.headers.common['Authorization'] = ''
     }
 
     getTweets(userPk) {
@@ -47,11 +47,8 @@ class Api {
             .catch(() => put(isLoading(false)))
     }
 
-    getAuthUser(token, username) {
+    getAuthUser(username) {
         return axios.get(urlAuthUser, {
-            headers: {
-                authorization: 'Token ' + token,
-            },
             user_name: username
         })
             .then(response => response.data)  
