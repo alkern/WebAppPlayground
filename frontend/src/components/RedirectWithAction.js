@@ -9,10 +9,11 @@ class RedirectWithAction extends React.Component {
     }
 
     render() {
-        return <Redirect push to='/home' />
+        return <Redirect push to={this.props.to} />
     }
 }
 RedirectWithAction.propTypes = {
+    to: PropTypes.string,
     action: PropTypes.object,
     dispatch: PropTypes.func.isRequired
 }

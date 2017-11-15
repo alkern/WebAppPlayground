@@ -28,7 +28,7 @@ ReactDOM.render(
                 <Route path='/' component={MainLayout} />
                 <Route path='/home' component={App} />
                 <Route path='/login' component={LoginForm} />
-                <Route path='/logout' render={() =><RedirectWithAction action={logout()} />} />
+                <Route path='/logout' render={() =><RedirectWithAction to={'/home'} action={logout()} />} />
                 <Route path='/register' component={RegisterForm} />
                 <Route path='/profile' component={Profile} />
             </div>

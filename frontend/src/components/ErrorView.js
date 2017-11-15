@@ -20,13 +20,13 @@ class ErrorView extends React.Component {
 
     render() {
         if (this.state.shouldReturn)
-            return <RedirectWithAction action={reportError(null)} />
+            return <RedirectWithAction to='/home' action={reportError(null)} />
         return (
             <div>
-                <div className="alert alert-danger" role="alert">
+                <div className='alert alert-danger' role='alert'>
                     {this.props.error}
                 </div>
-                <button className="btn btn-default" onClick={this.returnFromError}>
+                <button className='btn btn-default' onClick={this.returnFromError}>
           Return
                 </button>
             </div>
