@@ -22,6 +22,7 @@ class Api {
     getTweets(userPk) {
         return axios.get(urlRichTweets + '?pk=' + userPk)
             .then(response => response.data)
+            .catch(error => {throw error.response.request.response})
     }
 
     sendTweet(text, user, username, date) {
@@ -31,6 +32,7 @@ class Api {
             user_name: username,
             date: date
         })
+            .catch(error => {throw error.response.request.response})
     }
 
     register(username, password, email) {
@@ -41,6 +43,7 @@ class Api {
             email: email
         })
             .then(response => response.data.key)
+            .catch(error => {throw error.response.request.response})
     }
 
     getAuthUser(username) {
@@ -48,6 +51,7 @@ class Api {
             user_name: username
         })
             .then(response => response.data)  
+            .catch(error => {throw error.response.request.response})
     }
 
     login(username, password) {
@@ -56,10 +60,12 @@ class Api {
             password: password
         })
             .then(response => response.data.key)
+            .catch(error => {throw error.response.request.response})
     }
 
     logout() {
         return axios.post(urlLogout)
+            .catch(error => {throw error.response.request.response})
     }
 }
 

@@ -68,6 +68,6 @@ export const logout = () => {
 export const reportError = error => {
     return {
         type: 'ERROR',
-        error: error ? error.message : null
+        error: error
     }
 }

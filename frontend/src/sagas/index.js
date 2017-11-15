@@ -11,6 +11,7 @@ function* fetchTweets(action) {
         yield put(isLoading(false))
         yield put(receiveTweets(tweets))
     } catch(error) {
+        yield put(reportError(error))
         yield put(isLoading(false))
     }
 }
@@ -29,6 +30,7 @@ function* register(action) {
         yield put(storeUser(user))
         yield put(isLoading(false))
     } catch(error) {
+        yield put(reportError(error))
         yield put(isLoading(false))
     }
 }
