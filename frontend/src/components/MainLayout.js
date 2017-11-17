@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Navigation from './Navigation'
+import Navigation from './navigation'
 
 class MainLayout extends React.Component {
     render() {

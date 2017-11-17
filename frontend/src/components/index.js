@@ -1,4 +1,4 @@
-import TweetList from './TweetList'
+import TweetList from './tweetlist'
 import Tweet from './Tweet'
 import showLoading from './showLoading'
 import ErrorView from './ErrorView'

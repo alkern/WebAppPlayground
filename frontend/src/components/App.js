@@ -1,7 +1,7 @@
 import React from 'react'
 import { TweetListContainer } from '../containers'
 import { connect } from 'react-redux'
-import TweetInput from './TweetInput'
+import TweetInput from './tweetInput'
 import PropTypes from 'prop-types'
 import { ErrorView } from '.'
 
